@@ -1,0 +1,63 @@
+[
+  {
+    "id": "program_u10_foundations",
+    "name": "U10 Foundations: 6-Week Development Program",
+    "ageGroup": "u10",
+    "description": "A complete 6-week youth field hockey development program for Under 10 players. Two sessions per week progressing from fundamental stick skills through to match play. Suitable for beginners through intermediate players.",
+    "weeks": [
+      {
+        "weekNumber": 1,
+        "theme": "Stick Skills & Passing Basics",
+        "sessions": ["session_u10_w1_s1", "session_u10_w1_s2"],
+        "homeAssignment": "50 wall passes each night (forehand). Practice Indian dribble around household objects for 5 minutes."
+      },
+      {
+        "weekNumber": 2,
+        "theme": "Receiving & Movement",
+        "sessions": ["session_u10_w2_s1", "session_u10_w2_s2"],
+        "homeAssignment": "Wall passes: 25 forehand + 25 reverse. Practice trap-and-turn against a wall."
+      },
+      {
+        "weekNumber": 3,
+        "theme": "Defending & Game Situations",
+        "sessions": ["session_u10_w3_s1", "session_u10_w3_s2"],
+        "homeAssignment": "Agility ladder drills (or make one with chalk). 50 wall passes with one-touch challenge."
+      },
+      {
+        "weekNumber": 4,
+        "theme": "Shooting & Attacking Combos",
+        "sessions": ["session_u10_w4_s1", "session_u10_w4_s2"],
+        "homeAssignment": "Target practice: set up a goal (two cones) and shoot 30 balls. Practice hitting low and accurate."
+      },
+      {
+        "weekNumber": 5,
+        "theme": "Skills Consolidation & Games",
+        "sessions": ["session_u10_w5_s1", "session_u10_w5_s2"],
+        "homeAssignment": "Self-assessment: write down your best skill and one thing to improve. Practice your improvement area for 10 minutes."
+      },
+      {
+        "weekNumber": 6,
+        "theme": "Match Preparation & Celebration",
+        "sessions": ["session_u10_w6_s1", "session_u10_w6_s2"],
+        "homeAssignment": "Rest and recovery before game day. Visualize yourself performing your best skill in a match."
+      }
+    ],
+    "goals": [
+      "Master basic push pass and receiving technique",
+      "Develop confident dribbling in traffic",
+      "Understand fundamental 1v1 defending",
+      "Experience shooting and scoring",
+      "Build teamwork and communication habits",
+      "Establish a home practice routine",
+      "Have fun and love the sport"
+    ],
+    "assessmentCriteria": [
+      "Can execute a push pass accurately over 5 meters",
+      "Can dribble through a cone slalom at speed",
+      "Understands the jab tackle and when to use it",
+      "Can receive and turn under light pressure",
+      "Participates actively in small-sided games",
+      "Demonstrates teamwork and positive attitude"
+    ]
+  }
+]

@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "FieldHockeyKernel Session",
+  "type": "object",
+  "required": ["id", "name", "weekNumber", "sessionNumber", "ageGroup", "theme", "duration", "warmup", "drills", "cooldown"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^session_[a-z0-9_]+$" },
+    "name": { "type": "string" },
+    "weekNumber": { "type": "integer", "minimum": 1 },
+    "sessionNumber": { "type": "integer", "minimum": 1 },
+    "ageGroup": { "type": "string", "enum": ["u6", "u8", "u10", "u12", "u14"] },
+    "theme": { "type": "string" },
+    "duration": { "type": "integer", "description": "Total session duration in minutes" },
+    "warmup": {
+      "type": "object",
+      "required": ["duration", "activities"],
+      "properties": {
+        "duration": { "type": "integer" },
+        "activities": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "drills": {
+      "type": "array",
+      "items": { "type": "string", "description": "Drill ID reference" },
+      "minItems": 1
+    },
+    "cooldown": {
+      "type": "object",
+      "required": ["duration", "activities"],
+      "properties": {
+        "duration": { "type": "integer" },
+        "activities": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "coachNotes": { "type": "string" },
+    "emotionalCues": { "type": "array", "items": { "type": "string" } }
+  }
+}

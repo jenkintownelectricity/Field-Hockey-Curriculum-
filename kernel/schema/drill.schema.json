@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "FieldHockeyKernel Drill",
+  "type": "object",
+  "required": ["id", "name", "category", "ageGroups", "surface", "equipment", "phases", "duration", "playerCount", "pedagogy"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^drill_[a-z0-9_]+$" },
+    "name": { "type": "string", "minLength": 3 },
+    "category": { "type": "string", "enum": ["dribbling", "passing", "receiving", "shooting", "tackling", "goalkeeping", "movement", "fitness"] },
+    "ageGroups": { "type": "array", "items": { "type": "string", "enum": ["u6", "u8", "u10", "u12", "u14"] }, "minItems": 1 },
+    "surface": { "type": "array", "items": { "type": "string", "enum": ["turf", "grass", "indoor", "home"] }, "minItems": 1 },
+    "equipment": { "type": "array", "items": { "type": "string" } },
+    "duration": { "type": "integer", "minimum": 1, "maximum": 60, "description": "Duration in minutes" },
+    "playerCount": {
+      "type": "object",
+      "properties": {
+        "min": { "type": "integer", "minimum": 1 },
+        "max": { "type": "integer", "minimum": 1 }
+      },
+      "required": ["min", "max"]
+    },
+    "pedagogy": { "type": "string", "enum": ["intro", "develop", "refine", "perform"] },
+    "emotionalCues": { "type": "array", "items": { "type": "string" } },
+    "phases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "duration", "instructions"],
+        "properties": {
+          "name": { "type": "string" },
+          "duration": { "type": "integer" },
+          "instructions": { "type": "string" },
+          "coachingPoints": { "type": "array", "items": { "type": "string" } },
+          "diagram": { "type": "string", "description": "Reference to SVG diagram ID" }
+        }
+      },
+      "minItems": 1
+    },
+    "objectives": { "type": "array", "items": { "type": "string" } },
+    "variations": { "type": "array", "items": { "type": "string" } },
+    "safetyNotes": { "type": "array", "items": { "type": "string" } },
+    "youtubeScript": {
+      "type": "object",
+      "properties": {
+        "hook": { "type": "string" },
+        "demo": { "type": "string" },
+        "keyPoints": { "type": "array", "items": { "type": "string" } },
+        "callToAction": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,12 +1,24 @@
-Kernel-first: UI must never hardcode drills. Everything renders from kernel entities.
+# Claude Build Memory
 
-ONE-SHOT build: no placeholders, no stubs, no TODOs. Everything works end-to-end after build.
+## Principles
+- Kernel-first. No hardcoded drills in UI.
+- Incremental commits + frequent pushes (browser-local risk).
+- One-shot build: no placeholders, everything working.
 
-Seed data required: at least 1 valid record per entity; at least 10 drills with diagrams and at-home variants.
+## Current State (v1.0)
+- 12 drills across 8 skill categories
+- 12 sessions in a 6-week U10 program
+- 1 complete program: U10 Foundations
+- 7 pages: Dashboard, Drills, Programs, Sessions, Diagrams, Scripts, Pocket Cards
+- SVG diagrams for 9 drills
+- YouTube scripts for 4 drills
+- PDF generators: session plans, program workbooks, pocket cards
+- PWA ready, Capacitor config for iOS/Android
+- Kernel validator: 0 errors, 0 warnings
 
-Token discipline: keep outputs compact; generate deterministically from templates; avoid verbose comments.
-
-Incremental commits + frequent pushes (browser-local repo risk). Build in small slices and push often.
-
-All buttons/flows must be tested (click-through) and exports must generate successfully.
-
+## To Extend
+- Add drills: edit seed/curriculum/drills.json
+- Add sessions: edit seed/curriculum/sessions.json
+- Add programs: edit seed/curriculum/programs.json
+- Add diagrams: edit app/src/lib/diagram-generator.tsx drillDiagrams map
+- Run validator: node kernel/validators/validate.js

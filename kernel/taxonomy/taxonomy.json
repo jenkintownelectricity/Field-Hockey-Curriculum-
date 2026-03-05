@@ -1,0 +1,53 @@
+{
+  "version": "1.0.0",
+  "ageGroups": [
+    { "id": "u6", "label": "Under 6", "minAge": 4, "maxAge": 6, "focus": "fun, movement, hand-eye coordination" },
+    { "id": "u8", "label": "Under 8", "minAge": 6, "maxAge": 8, "focus": "basic stick skills, small-sided games" },
+    { "id": "u10", "label": "Under 10", "minAge": 8, "maxAge": 10, "focus": "positional play, passing accuracy, 1v1" },
+    { "id": "u12", "label": "Under 12", "minAge": 10, "maxAge": 12, "focus": "tactical awareness, set pieces, team play" },
+    { "id": "u14", "label": "Under 14", "minAge": 12, "maxAge": 14, "focus": "advanced tactics, fitness, match preparation" }
+  ],
+  "skillCategories": [
+    { "id": "dribbling", "label": "Dribbling", "description": "Ball control while moving" },
+    { "id": "passing", "label": "Passing", "description": "Push pass, slap pass, hit" },
+    { "id": "receiving", "label": "Receiving", "description": "Trapping and controlling the ball" },
+    { "id": "shooting", "label": "Shooting", "description": "Goal scoring techniques" },
+    { "id": "tackling", "label": "Tackling", "description": "Defensive stick work to win the ball" },
+    { "id": "goalkeeping", "label": "Goalkeeping", "description": "GK-specific skills" },
+    { "id": "movement", "label": "Movement", "description": "Off-ball runs, leads, positioning" },
+    { "id": "fitness", "label": "Fitness", "description": "Agility, speed, endurance" }
+  ],
+  "surfaces": [
+    { "id": "turf", "label": "Artificial Turf", "notes": "Ideal surface, fast ball speed" },
+    { "id": "grass", "label": "Grass Field", "notes": "Slower surface, uneven bounces" },
+    { "id": "indoor", "label": "Indoor Court", "notes": "Smaller space, faster play" },
+    { "id": "home", "label": "Home / Driveway", "notes": "Solo practice, limited space" }
+  ],
+  "equipment": [
+    { "id": "stick", "label": "Hockey Stick", "required": true },
+    { "id": "ball", "label": "Field Hockey Ball", "required": true },
+    { "id": "cones", "label": "Cones / Markers", "required": false },
+    { "id": "goals", "label": "Goals / Targets", "required": false },
+    { "id": "shin_guards", "label": "Shin Guards", "required": true },
+    { "id": "mouthguard", "label": "Mouthguard", "required": true },
+    { "id": "goggles", "label": "Goggles", "required": false },
+    { "id": "gk_gear", "label": "GK Protective Gear", "required": false },
+    { "id": "agility_ladder", "label": "Agility Ladder", "required": false },
+    { "id": "rebounder", "label": "Rebounder Board", "required": false },
+    { "id": "pennies", "label": "Pinnies / Bibs", "required": false }
+  ],
+  "pedagogyLevels": [
+    { "id": "intro", "label": "Introduction", "description": "First exposure to a concept" },
+    { "id": "develop", "label": "Development", "description": "Guided practice with feedback" },
+    { "id": "refine", "label": "Refinement", "description": "Polishing technique under pressure" },
+    { "id": "perform", "label": "Performance", "description": "Game-like application" }
+  ],
+  "emotionalCues": [
+    { "id": "encourage", "label": "Encourage", "phrase": "Great effort! Keep going!" },
+    { "id": "celebrate", "label": "Celebrate", "phrase": "Amazing work! High five!" },
+    { "id": "refocus", "label": "Refocus", "phrase": "Let's reset and try again." },
+    { "id": "challenge", "label": "Challenge", "phrase": "Can you beat your record?" },
+    { "id": "team_build", "label": "Team Build", "phrase": "Help your teammate out!" },
+    { "id": "calm", "label": "Calm Down", "phrase": "Take a breath. You've got this." }
+  ]
+}

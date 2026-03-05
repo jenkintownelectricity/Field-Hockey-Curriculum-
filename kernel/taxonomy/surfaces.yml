@@ -1,0 +1,26 @@
+- slug: hardwood
+  name: Hardwood gym floor
+  category: hardwood
+  friction_estimate: 3
+  ball_behavior_notes: "Fast roll; predictable bounce; louder stick/ball contact."
+  footwear_guidance: "Indoor court shoes; non-marking soles."
+  safety_notes: "Watch slips on dust; keep hydration spills off court."
+  materials: [maple, polyurethane_finish]
+
+- slug: sport_tile
+  name: Sport tile (polypropylene)
+  category: sport_tiles
+  friction_estimate: 4
+  ball_behavior_notes: "Slightly higher grip; ball slows faster."
+  footwear_guidance: "Court shoes with good lateral grip."
+  safety_notes: "Check seams; avoid uneven sections."
+  materials: [polypropylene]
+
+- slug: indoor_turf
+  name: Indoor turf
+  category: turf
+  friction_estimate: 4
+  ball_behavior_notes: "More resistance; ball can hop on infill."
+  footwear_guidance: "Turf shoes or court shoes depending on venue."
+  safety_notes: "Check for loose infill; ensure goals anchored."
+  materials: [polyethylene_fiber, rubber_infill]

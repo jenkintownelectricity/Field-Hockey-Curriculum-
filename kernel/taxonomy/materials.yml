@@ -1,0 +1,59 @@
+- slug: maple
+  name: Maple
+  type: wood
+  durability: 4
+  grip: 2
+  bounce: 3
+  abrasion: 3
+  wet_behavior: "Can get slick when dusty/wet."
+  usage_context: "Common gym hardwood substrate."
+
+- slug: polyurethane_finish
+  name: Polyurethane finish
+  type: polyurethane
+  durability: 4
+  grip: 3
+  bounce: 3
+  abrasion: 3
+  wet_behavior: "Slick if wet."
+  usage_context: "Gym floor coating."
+
+- slug: polypropylene
+  name: Polypropylene
+  type: polymer
+  durability: 4
+  grip: 4
+  bounce: 3
+  abrasion: 4
+  wet_behavior: "Stable; can be slick if dusty."
+  usage_context: "Sport tiles."
+
+- slug: polyethylene_fiber
+  name: Polyethylene fiber
+  type: polymer
+  durability: 4
+  grip: 4
+  bounce: 2
+  abrasion: 4
+  wet_behavior: "Good drainage; ball can skid."
+  usage_context: "Turf fiber."
+
+- slug: rubber_infill
+  name: Rubber infill
+  type: rubber
+  durability: 4
+  grip: 4
+  bounce: 2
+  abrasion: 3
+  wet_behavior: "Can clump if wet."
+  usage_context: "Turf infill."
+
+- slug: foam
+  name: Foam
+  type: foam
+  durability: 2
+  grip: 3
+  bounce: 1
+  abrasion: 2
+  wet_behavior: "Absorbs water."
+  usage_context: "Training balls, padding."

@@ -1,0 +1,29 @@
+- slug: grip
+  name: Grip
+  coaching_cues: "V between thumb/index; left hand top; relaxed wrists."
+  common_mistakes: "Death-grip; hands too close; right hand too high."
+
+- slug: stance
+  name: Athletic stance
+  coaching_cues: "Knees bent; chest up; stick on floor; eyes forward."
+  common_mistakes: "Straight legs; head down too long."
+
+- slug: dribble
+  name: Dribble control
+  coaching_cues: "Soft touches; keep ball on right; scan up."
+  common_mistakes: "Big touches; staring at ball."
+
+- slug: push_pass
+  name: Push pass
+  coaching_cues: "Ball by right foot; step to target; smooth push."
+  common_mistakes: "Slapping; no step; ball too far forward."
+
+- slug: trap
+  name: Trap/receive
+  coaching_cues: "Cushion; angle stick; absorb ball."
+  common_mistakes: "Stiff stick; feet planted."
+
+- slug: basic_defense
+  name: Basic defense
+  coaching_cues: "Jockey; stay goal-side; low stick."
+  common_mistakes: "Diving in; reaching; turning back."

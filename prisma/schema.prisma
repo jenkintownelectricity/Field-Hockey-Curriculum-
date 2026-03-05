@@ -1,0 +1,305 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model KernelMeta {
+  id         String   @id @default("kernel")
+  schemaVer  String
+  updatedAt  DateTime @updatedAt
+}
+
+model Material {
+  id            String   @id @default(cuid())
+  slug          String   @unique
+  name          String
+  type          String
+  durability    Int?     // 1-5
+  grip          Int?     // 1-5
+  bounce        Int?     // 1-5
+  abrasion      Int?     // 1-5
+  wetBehavior   String?
+  usageContext  String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  surfaces      SurfaceMaterial[]
+}
+
+model Surface {
+  id                 String   @id @default(cuid())
+  slug               String   @unique
+  name               String
+  category           String
+  frictionEstimate   Int?     // 1-5
+  ballBehaviorNotes  String?
+  footwearGuidance   String?
+  safetyNotes        String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  materials          SurfaceMaterial[]
+  drills            DrillSurface[]
+}
+
+model SurfaceMaterial {
+  surfaceId  String
+  materialId String
+  surface    Surface  @relation(fields: [surfaceId], references: [id], onDelete: Cascade)
+  material   Material @relation(fields: [materialId], references: [id], onDelete: Cascade)
+
+  @@id([surfaceId, materialId])
+}
+
+model Equipment {
+  id           String   @id @default(cuid())
+  slug         String   @unique
+  name         String
+  category     String
+  sizeRange    String?
+  safetyNotes  String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  drillLinks   DrillEquipment[]
+}
+
+model Skill {
+  id            String   @id @default(cuid())
+  slug          String   @unique
+  name          String
+  coachingCues  String?
+  commonMistakes String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  prereqFrom    SkillPrereq[] @relation("SkillPrereqFrom")
+  prereqTo      SkillPrereq[] @relation("SkillPrereqTo")
+  drillLinks    DrillSkill[]
+}
+
+model SkillPrereq {
+  skillId       String
+  prerequisiteId String
+  skill         Skill @relation("SkillPrereqFrom", fields: [skillId], references: [id], onDelete: Cascade)
+  prerequisite  Skill @relation("SkillPrereqTo", fields: [prerequisiteId], references: [id], onDelete: Cascade)
+
+  @@id([skillId, prerequisiteId])
+}
+
+model EmotionTag {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  drillLinks   DrillEmotion[]
+  lessonLinks  LessonEmotion[]
+  programLinks ProgramEmotion[]
+}
+
+model PedagogyTag {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  drillLinks   DrillPedagogy[]
+  lessonLinks  LessonPedagogy[]
+  programLinks ProgramPedagogy[]
+}
+
+model Drill {
+  id               String   @id @default(cuid())
+  slug             String   @unique
+  name             String
+  durationDefaultS Int
+  playerMin        Int
+  playerMax        Int
+  spaceRequired    String
+  intensity        Int      // 1-5
+  learningMode     String   // demo|repetition|game|challenge (csv ok)
+  stepsJson        Json
+  coachingPoints   String?
+  commonMistakes   String?
+  safetyNotes      String
+  atHomeVariantsJson Json
+  published        Boolean  @default(false)
+
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  skills           DrillSkill[]
+  equipment        DrillEquipment[]
+  surfaces         DrillSurface[]
+  emotions         DrillEmotion[]
+  pedagogy         DrillPedagogy[]
+  diagram          Diagram?
+  storyboards      Storyboard[]
+  lessonBlocks     LessonBlock[]
+  scripts          YouTubeScript[]
+}
+
+model DrillSkill {
+  drillId String
+  skillId String
+  drill   Drill @relation(fields: [drillId], references: [id], onDelete: Cascade)
+  skill   Skill @relation(fields: [skillId], references: [id], onDelete: Cascade)
+  @@id([drillId, skillId])
+}
+
+model DrillEquipment {
+  drillId     String
+  equipmentId String
+  drill       Drill     @relation(fields: [drillId], references: [id], onDelete: Cascade)
+  equipment   Equipment @relation(fields: [equipmentId], references: [id], onDelete: Cascade)
+  @@id([drillId, equipmentId])
+}
+
+model DrillSurface {
+  drillId   String
+  surfaceId String
+  drill     Drill   @relation(fields: [drillId], references: [id], onDelete: Cascade)
+  surface   Surface @relation(fields: [surfaceId], references: [id], onDelete: Cascade)
+  @@id([drillId, surfaceId])
+}
+
+model DrillEmotion {
+  drillId    String
+  emotionId  String
+  drill      Drill      @relation(fields: [drillId], references: [id], onDelete: Cascade)
+  emotion    EmotionTag @relation(fields: [emotionId], references: [id], onDelete: Cascade)
+  @@id([drillId, emotionId])
+}
+
+model DrillPedagogy {
+  drillId     String
+  pedagogyId  String
+  drill       Drill       @relation(fields: [drillId], references: [id], onDelete: Cascade)
+  pedagogy    PedagogyTag @relation(fields: [pedagogyId], references: [id], onDelete: Cascade)
+  @@id([drillId, pedagogyId])
+}
+
+model Diagram {
+  id          String  @id @default(cuid())
+  drillId     String  @unique
+  drill       Drill   @relation(fields: [drillId], references: [id], onDelete: Cascade)
+  diagramDsl  String
+  pageSize    String  @default("letter")
+  marginsMm   String  @default("12,12,12,12")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Storyboard {
+  id        String   @id @default(cuid())
+  drillId   String
+  drill     Drill    @relation(fields: [drillId], references: [id], onDelete: Cascade)
+  framesJson Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model YouTubeScript {
+  id         String   @id @default(cuid())
+  drillId    String
+  drill      Drill    @relation(fields: [drillId], references: [id], onDelete: Cascade)
+  title      String
+  hook       String
+  voiceover  String
+  shotListJson Json
+  onScreenTextJson Json
+  cta        String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Lesson {
+  id            String   @id @default(cuid())
+  slug          String   @unique
+  title         String
+  hydrationJson Json
+  coachingNotes String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  blocks        LessonBlock[]
+  emotions      LessonEmotion[]
+  pedagogy      LessonPedagogy[]
+  programLinks  ProgramLesson[]
+}
+
+model LessonBlock {
+  id        String   @id @default(cuid())
+  lessonId  String
+  drillId   String
+  orderNo   Int
+  durationS Int
+
+  lesson    Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  drill     Drill  @relation(fields: [drillId], references: [id], onDelete: Cascade)
+
+  @@index([lessonId, orderNo])
+}
+
+model Program {
+  id         String   @id @default(cuid())
+  slug       String   @unique
+  title      String
+  scheduleJson Json
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  lessons    ProgramLesson[]
+  emotions   ProgramEmotion[]
+  pedagogy   ProgramPedagogy[]
+}
+
+model ProgramLesson {
+  programId String
+  lessonId  String
+  orderNo   Int
+  program   Program @relation(fields: [programId], references: [id], onDelete: Cascade)
+  lesson    Lesson  @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@id([programId, lessonId])
+  @@index([programId, orderNo])
+}
+
+model LessonEmotion {
+  lessonId  String
+  emotionId String
+  lesson    Lesson     @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  emotion   EmotionTag @relation(fields: [emotionId], references: [id], onDelete: Cascade)
+  @@id([lessonId, emotionId])
+}
+
+model LessonPedagogy {
+  lessonId   String
+  pedagogyId String
+  lesson     Lesson      @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  pedagogy   PedagogyTag @relation(fields: [pedagogyId], references: [id], onDelete: Cascade)
+  @@id([lessonId, pedagogyId])
+}
+
+model ProgramEmotion {
+  programId String
+  emotionId String
+  program   Program    @relation(fields: [programId], references: [id], onDelete: Cascade)
+  emotion   EmotionTag @relation(fields: [emotionId], references: [id], onDelete: Cascade)
+  @@id([programId, emotionId])
+}
+
+model ProgramPedagogy {
+  programId  String
+  pedagogyId String
+  program    Program     @relation(fields: [programId], references: [id], onDelete: Cascade)
+  pedagogy   PedagogyTag @relation(fields: [pedagogyId], references: [id], onDelete: Cascade)
+  @@id([programId, pedagogyId])
+}

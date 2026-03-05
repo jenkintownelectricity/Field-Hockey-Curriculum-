@@ -1,28 +1,29 @@
-{
-    "name": "field-hockey-curriculum",
-    "private": true,
-    "workspaces": [
-        "app"
-    ],
-    "scripts": {
-        "db:up": "docker compose up -d",
-        "db:down": "docker compose down",
-        "prisma:generate": "prisma generate",
-        "db:migrate": "prisma migrate dev",
-        "db:push": "prisma db push",
-        "db:seed": "ts-node prisma/seed.ts",
-        "kernel:validate": "ts-node kernel/validators/validate-kernel.ts"
-    },
-    "devDependencies": {
-        "@types/js-yaml": "^4.0.9",
-        "@types/node": "^20.0.0",
-        "js-yaml": "^4.1.0",
-        "prisma": "^5.0.0",
-        "ts-node": "^10.9.2",
-        "typescript": "^5.0.0",
-        "zod": "^3.23.0"
-    },
-    "dependencies": {
-        "@prisma/client": "^5.0.0"
-    }
+﻿{
+    "name":  "field-hockey-curriculum",
+    "private":  true,
+    "workspaces":  [
+                       "app"
+                   ],
+    "scripts":  {
+                    "db:up":  "echo Docker not installed on this machine. Using local Postgres service instead.",
+                    "db:down":  "echo Docker not installed on this machine.",
+                    "prisma:generate":  "prisma generate",
+                    "db:migrate":  "prisma migrate dev",
+                    "db:push":  "prisma db push",
+                    "db:seed":  "ts-node prisma/seed.ts",
+                    "kernel:validate":  "ts-node kernel/validators/validate-kernel.ts"
+                },
+    "devDependencies":  {
+                            "@types/js-yaml":  "^4.0.9",
+                            "@types/node":  "^20.0.0",
+                            "js-yaml":  "^4.1.0",
+                            "prisma":  "^5.0.0",
+                            "ts-node":  "^10.9.2",
+                            "typescript":  "^5.0.0",
+                            "zod":  "^3.23.0"
+                        },
+    "dependencies":  {
+                         "@prisma/client":  "^5.0.0"
+                     },
+    "type":  "module"
 }

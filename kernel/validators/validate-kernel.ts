@@ -1,13 +1,18 @@
-import fs from "node:fs";
+﻿import fs from "node:fs";
 import path from "node:path";
-import { DrillSchema, LessonSchema, ProgramSchema } from "./zod";
+import { DrillSchema, LessonSchema, ProgramSchema } from "./zod.ts"
 
 type Result = { ok: boolean; errors: string[] };
 
 function readJson(p: string) {
-    return JSON.parse(fs.readFileSync(p, "utf8"));
+  return JSON.parse(fs.readFileSync(p, "utf8"));
 }
 
+function asArray(x: any, key: "drills"|"lessons"|"programs") {
+  if (Array.isArray(x)) return x;
+  if (x && Array.isArray(x[key])) return x[key];
+  return [];
+}
 function validateAll(): Result {
     const errors: string[] = [];
     const base = path.join(process.cwd(), "seed", "curriculum");
@@ -22,9 +27,9 @@ function validateAll(): Result {
 
     if (errors.length) return { ok: false, errors };
 
-    const drills = readJson(drillsPath);
-    const lessons = readJson(lessonsPath);
-    const programs = readJson(programsPath);
+    const drills = asArray(readJson(drillsPath), "drills");
+    const lessons = asArray(readJson(lessonsPath), "lessons");
+    const programs = asArray(readJson(programsPath), "programs");
 
     for (const d of drills) {
         const parsed = DrillSchema.safeParse(d);
@@ -52,3 +57,4 @@ if (!res.ok) {
     process.exit(1);
 }
 console.log("Kernel validation OK.");
+
